@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Laboratorio de Microservicios (Django + React)
 
 Este repositorio contiene un laboratorio de microservicios que demuestra la integración de servicios de backend construidos con Django y una interfaz de usuario frontend desarrollada con React. La arquitectura está diseñada para ser escalable y modular, utilizando un reverse proxy como API Gateway y bases de datos persistentes.
@@ -63,3 +64,43 @@ Para desarrollar un servicio individualmente:
 1.  Navega al directorio del servicio (ej. `cd auth-service/`).
 2.  Instala las dependencias específicas del servicio (ej. `pip install -r requirements.txt` para Python, `npm install` para Node.js/React).
 3.  Configura las variables de entorno necesarias para el servicio.
+=======
+# 🧩 Microservices Lab
+
+**Laboratorio de Microservicios – Stack: Django + React**
+
+---
+
+## 🏗️ Arquitectura general
+
+Cada servicio está aislado y diseñado para comunicarse mediante APIs internas:
+
+- **`auth-service/`** → Manejo de usuarios y autenticación con JWT.  
+- **`blog-service/`** → Publicaciones, autores y categorías del sistema.  
+- **`email-service/`** → Envío de notificaciones y gestión de formularios.  
+- **`frontend/`** → Interfaz desarrollada en React.  
+- **`reverse-proxy/`** → Nginx como gateway local y balanceador.
+
+---
+
+## ⚙️ Servicios principales
+
+| Servicio      | Puerto | Descripción                |
+|----------------|--------|----------------------------|
+| PostgreSQL     | 5432   | Base de datos principal    |
+| Redis          | 6379   | Cache y sistema de colas   |
+
+---
+
+## 🧠 Desafío del día
+
+1. Levantar los contenedores:  
+   ```bash
+   docker compose up -d
+
+2. Crear un archivo de prueba en auth-service/test_connection.py para validar la conexión con PostgreSQL y Redis.
+
+3. Ejecutar la prueba dentro del contenedor correspondiente:
+    
+   docker exec -it <nombre_del_contenedor> python test_connection.py
+>>>>>>> 04553581254b252a953ff28ca76ac058dc7f2389
