@@ -100,5 +100,5 @@ Cada servicio está aislado y diseñado para comunicarse mediante APIs internas:
 2. Crear un archivo de prueba en auth-service/test_connection.py para validar la conexión con PostgreSQL y Redis.
 
 3. Ejecutar la prueba dentro del contenedor correspondiente:
-    
+     ```bash
    docker exec -it <nombre_del_contenedor> python test_connection.py
