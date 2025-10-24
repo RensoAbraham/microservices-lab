@@ -1,61 +1,48 @@
-<<<<<<< HEAD
 # Servicio de Autenticación (auth-service)
 
-Este servicio se encarga de la autenticación de usuarios y la generación/validación de tokens JWT. Es un componente fundamental del backend, construido con Django.
+Este servicio es el encargado de la **autenticación y autorización** de usuarios dentro del ecosistema de microservicios. Se encarga del registro, inicio de sesión y validación de tokens JWT para el acceso seguro a los demás servicios.
 
-## Tecnologías
-- Python
-- Django
-- Django REST Framework
-- djangorestframework-simplejwt
-- PostgreSQL (como base de datos)
-- Redis (para caching/sesiones)
+## Tecnologías Implementadas
 
-## Configuración y Ejecución (Desarrollo Local)
-Para ejecutar este servicio localmente:
-1.  Asegúrate de tener Python y pip instalados.
-2.  Instala las dependencias: `pip install -r requirements.txt`
-3.  Configura las variables de entorno necesarias (puedes ver un ejemplo en el `.env.example` de la raíz del proyecto).
-=======
-##  Auth Service
+| Componente | Tecnología | Propósito |
+| :--- | :--- | :--- |
+| **Backend** | Python 3.11, Django | Base del servicio. |
+| **Autenticación** | Djoser, Simple JWT | Manejo de registro, tokens de acceso y refresco. |
+| **Base de Datos** | PostgreSQL | Persistencia de datos de usuarios. |
+| **Cache/Sesiones** | Redis | Gestión de sesiones y cache (a través de Docker Compose). |
+| **Contenedores** | Dockerfile, docker-compose.yml | Orquestación del entorno de desarrollo. |
 
-Servicio responsable de la **autenticación y autorización** de usuarios dentro del ecosistema.  
-Se encarga del registro, inicio de sesión y validación de tokens JWT para el acceso seguro a los demás servicios.
+## Endpoints Principales
 
-###  Funcionalidades
-- Registro de nuevos usuarios  
-- Inicio de sesión y validación de credenciales  
-- Generación y verificación de tokens JWT  
-- Middleware para proteger rutas privadas  
+Todos los *endpoints* están disponibles a través del puerto `8000` del contenedor `auth-service`.
 
-###  Tecnologías
-- Node.js + Express  
-- MongoDB o PostgreSQL  
-- JWT + bcrypt  
+| Método | Ruta | Descripción | Estado |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/auth/users/` | **Registro** de un nuevo usuario (con email y contraseña). | Funcional |
+| `POST` | `/api/token/` | **Login** - Obtiene los tokens de acceso y refresco. | Funcional |
+| `POST` | `/api/token/refresh/` | **Refresco** - Renueva el token de acceso. | Funcional |
+| `GET` | `/api/me/` | **Verificar/Obtener Usuario** - Devuelve los datos del usuario autenticado (requiere token de acceso). | Funcional |
 
-###  Estructura
-auth-service/
-├── src/
-│ ├── routes/
-│ ├── controllers/
-│ ├── models/
-│ └── utils/
-├── .env
-└── package.json
+## Evidencia de Pruebas Exitosas (Postman)
 
-bash
-Copiar código
+El siguiente flujo demuestra el correcto funcionamiento de la autenticación JWT.
 
-### ▶ Ejecución
-```bash
-cd auth-service
-npm install
-npm run start
- Puerto por defecto: 4000
+### 1. Login y Generación de Tokens (POST /api/token/)
 
- Endpoints
-Método	Ruta	Descripción
-POST	/auth/register	Crear un nuevo usuario
-POST	/auth/login	Iniciar sesión
-GET	/auth/verify	Verificar token JWT
->>>>>>> 04553581254b252a953ff28ca76ac058dc7f2389
+Verificación del login con email y contraseña, generando tokens `access` y `refresh`.
+
+![Captura del Login Exitoso con Tokens](./docs/login_jwt.png)
+
+
+### 2. Renovación de Token (POST /api/token/refresh/)
+
+Verificación de la renovación del token de acceso (Access) utilizando el token de refresco (Refresh).
+
+![Captura de la Renovación del Token](./docs/refresh_token.png)
+
+
+### 3. Verificación de Usuario (GET /api/me/)
+
+Verificación del acceso a una ruta protegida usando el token Access en la cabecera `Authorization: Bearer <token>`.
+
+![Captura de la Verificación de Usuario Autenticado](./docs/verify_me.png)
