@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Laboratorio de Microservicios (Django + React)
 
 Este repositorio contiene un laboratorio de microservicios que demuestra la integración de servicios de backend construidos con Django y una interfaz de usuario frontend desarrollada con React. La arquitectura está diseñada para ser escalable y modular, utilizando un reverse proxy como API Gateway y bases de datos persistentes.
@@ -65,13 +64,13 @@ Para desarrollar un servicio individualmente:
 2.  Instala las dependencias específicas del servicio (ej. `pip install -r requirements.txt` para Python, `npm install` para Node.js/React).
 3.  Configura las variables de entorno necesarias para el servicio.
 =======
-# 🧩 Microservices Lab
+# Microservices Lab
 
 **Laboratorio de Microservicios – Stack: Django + React**
 
 ---
 
-## 🏗️ Arquitectura general
+## Arquitectura general
 
 Cada servicio está aislado y diseñado para comunicarse mediante APIs internas:
 
@@ -92,7 +91,7 @@ Cada servicio está aislado y diseñado para comunicarse mediante APIs internas:
 
 ---
 
-## 🧠 Desafío del día
+## Desafío del día
 
 1. Levantar los contenedores:  
    ```bash
@@ -103,4 +102,3 @@ Cada servicio está aislado y diseñado para comunicarse mediante APIs internas:
 3. Ejecutar la prueba dentro del contenedor correspondiente:
     
    docker exec -it <nombre_del_contenedor> python test_connection.py
->>>>>>> 04553581254b252a953ff28ca76ac058dc7f2389
