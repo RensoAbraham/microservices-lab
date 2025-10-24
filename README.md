@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Laboratorio de Microservicios (Django)
+=======
+# Laboratorio de Microservicios (Django + React)
+>>>>>>> staging
 
 Este repositorio contiene un laboratorio de microservicios que demuestra la integración de servicios de backend construidos con Django y una interfaz de usuario frontend desarrollada con React. La arquitectura está diseñada para ser escalable y modular, utilizando un reverse proxy como API Gateway y bases de datos persistentes.
 
@@ -62,6 +66,7 @@ Para desarrollar un servicio individualmente:
 
 1.  Navega al directorio del servicio (ej. `cd auth-service/`).
 2.  Instala las dependencias específicas del servicio (ej. `pip install -r requirements.txt` para Python, `npm install` para Node.js/React).
+<<<<<<< HEAD
 3.  Configura las variables de entorno necesarias para el servicio.
 =======
 # Microservices Lab
@@ -102,3 +107,6 @@ Cada servicio está aislado y diseñado para comunicarse mediante APIs internas:
 3. Ejecutar la prueba dentro del contenedor correspondiente:
      ```bash
    docker exec -it <nombre_del_contenedor> python test_connection.py
+=======
+3.  Configura las variables de entorno necesarias para el servicio.
+>>>>>>> staging
