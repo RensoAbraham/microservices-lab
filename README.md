@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-# Laboratorio de Microservicios (Django)
-=======
 # Laboratorio de Microservicios (Django + React)
->>>>>>> staging
-
 Este repositorio contiene un laboratorio de microservicios que demuestra la integración de servicios de backend construidos con Django y una interfaz de usuario frontend desarrollada con React. La arquitectura está diseñada para ser escalable y modular, utilizando un reverse proxy como API Gateway y bases de datos persistentes.
 
 ## Arquitectura General
