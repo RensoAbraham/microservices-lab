@@ -1,8 +1,10 @@
-from django.contrib import admin
-from django.urls import path, include
+import os
+import django
+from django.core.wsgi import get_wsgi_application
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/posts/', include('blog_posts.urls')),
-    path('api/categories/', include('blog_categories.urls')),
-]
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blog_service.settings')
+
+django.setup() 
+# --------------------
+
+application = get_wsgi_application()

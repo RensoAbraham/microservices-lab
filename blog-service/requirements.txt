@@ -1,5 +1,6 @@
 Django==5.0
 djangorestframework==3.15
+Faker==25.8.0 # Crear datos falsos pero realistas bueno para pruebas
 psycopg2-binary
 django-redis
 django-filter
