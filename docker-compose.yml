@@ -25,19 +25,27 @@ services:
     restart: always
     volumes:
       - ./auth-service:/app
-    environment:
-      - DEBUG=1
-      - DB_HOST=postgres
-      - DB_NAME=main_db
-      - DB_USER=devuser
-      - DB_PASS=devpass
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
+    env_file:
+      - ./auth-service/.env
     depends_on:
       - postgres
       - redis
     ports:
       - "8000:8000"
+
+  blog:
+    build: ./blog-service
+    container_name: blog_service
+    restart: always
+    volumes:
+      - ./blog-service/app:/app
+    env_file:
+      - ./blog-service/.env
+    ports:
+      - "8001:8001"
+    depends_on:
+      - postgres
+      - redis
 
 volumes:
   pgdata:
