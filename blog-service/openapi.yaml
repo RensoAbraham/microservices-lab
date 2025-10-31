@@ -1,0 +1,58 @@
+openapi: 3.1.0
+info:
+  title: Blog Service API
+  description: API para gestionar posts y categorías del blog.
+  version: 1.0.0
+
+paths:
+  /api/categories/:
+    get:
+      summary: Lista todas las categorías activas.
+      responses:
+        '200':
+          description: Una lista de categorías.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    slug:
+                      type: string
+
+  /api/posts/:
+    get:
+      summary: Lista los posts publicados con paginación y búsqueda.
+      parameters:
+        - name: page
+          in: query
+          description: El número de página a mostrar.
+          schema:
+            type: integer
+        - name: search
+          in: query
+          description: Término de búsqueda para filtrar por título o cuerpo.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Una lista paginada de posts.
+
+  /api/posts/{slug}/:
+    get:
+      summary: Obtiene el detalle de un post por su slug.
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          description: El slug único del post.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: El objeto completo del post.

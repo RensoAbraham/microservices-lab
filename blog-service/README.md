@@ -1,65 +1,57 @@
-<<<<<<< HEAD
-# Servicio de Blog (blog-service)
+# Servicio de Blog
 
-Este servicio gestiona las publicaciones del blog, incluyendo autores, categorías y el contenido de los artículos. Es un componente fundamental del backend, construido con Django.
-
-## Tecnologías
-- Python
-- Django
-- Django REST Framework
-- PostgreSQL (como base de datos)
-
-## Configuración y Ejecución (Desarrollo Local)
-Para ejecutar este servicio localmente:
-1.  Asegúrate de tener Python y pip instalados.
-2.  Instala las dependencias: `pip install -r requirements.txt`
-3.  Configura las variables de entorno necesarias (puedes ver un ejemplo en el `.env.example` de la raíz del proyecto).
-=======
-## Blog Service
-
-Servicio encargado de la gestión de publicaciones, autores y comentarios.
-Depende del Auth Service para validar la identidad de los usuarios.
+Este es un microservicio de Blog construido con Django, DRF, PostgreSQL y Redis, todo orquestado con Docker.
 
 ## Funcionalidades
 
-CRUD de publicaciones
+* Listado de categorías y posts.
+* Detalle de posts.
+* Paginación en el listado de posts.
+* Búsqueda por texto en título y cuerpo de los posts.
+* Caché con Redis para los endpoints de categorías y detalle de post.
+* Endpoint de Healthcheck en `/healthz`.
+* Logging estructurado en formato JSON por cada petición.
 
-Comentarios y etiquetas
+## Cómo ejecutar el proyecto
 
-Búsqueda y filtrado
+Este servicio está diseñado para ser ejecutado como parte del `docker-compose.yml` principal del proyecto `microservices-lab`.
 
-Validación JWT con Auth Service
+### Requisitos
 
-## Tecnologías
+* Docker
+* Docker Compose
 
-Node.js + Express
+### Pasos para la ejecución
 
-MongoDB
+1.  **Clonar el repositorio (si es necesario):**
+    ```bash
+    git clone <tu-repositorio>
+    ```
 
-Axios + JWT
+2.  **Navegar a la carpeta raíz del proyecto:**
+    ```bash
+    cd microservices-lab
+    ```
 
-## Estructura
-blog-service/
- ├── src/
- │   ├── routes/
- │   ├── controllers/
- │   ├── models/
- │   └── middleware/
- ├── .env
- └── package.json
+3.  **Levantar todos los servicios con Docker Compose:**
+    ```bash
+    docker-compose up -d --build
+    ```
+    El servicio de blog estará disponible en `http://localhost:8001`.
 
-## Ejecución
-cd blog-service
-npm install
-npm run start
+### Poblar la Base de Datos (Seed)
 
+Para llenar la base de datos con datos de prueba (autores, categorías y posts), ejecuta el siguiente comando:
 
- Puerto por defecto: 4001
+```bash
+docker-compose run --rm blog python manage.py seed_blog
+```
 
-## Endpoints
-Método	Ruta	Descripción
-GET	/posts	Listar publicaciones
-POST	/posts	Crear nueva publicación
-PUT	/posts/:id	Actualizar publicación
-DELETE	/posts/:id	Eliminar publicación
->>>>>>> 04553581254b252a953ff28ca76ac058dc7f2389
+### Endpoints Principales
+
+* `GET /api/categories/`: Lista las categorías.
+* `GET /api/posts/`: Lista los posts publicados (paginado).
+* `GET /api/posts/?page=2`: Accede a la segunda página de posts.
+* `GET /api/posts/?search=palabra`: Busca "palabra" en los posts.
+* `GET /api/posts/{slug-del-post}/`: Muestra el detalle de un post.
+* `GET /healthz/`: Comprueba el estado del servicio.
